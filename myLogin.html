@@ -19,7 +19,7 @@
         <div class="title"></div>
         <!-- 登录区 -->
         <div class="box-login">
-            <form class="layui-form">
+            <form class="layui-form" id="form-login">
                 <div class="layui-form-item">
                     <i class="layui-icon layui-icon-username"></i>
                     <input type="text" name="username" required lay-verify="required" placeholder="请输入用户名" autocomplete="off"
@@ -40,7 +40,7 @@
         </div>
         <!-- 注册区 -->
         <div class="box-reg">
-            <form class="layui-form">
+            <form class="layui-form" id="form-reg">
                 <div class="layui-form-item">
                     <i class="layui-icon layui-icon-username"></i>
                     <input type="text" name="username" required lay-verify="required" placeholder="请输入用户名" autocomplete="off"
@@ -53,7 +53,7 @@
                 </div>
                 <div class="layui-form-item">
                     <i class="layui-icon layui-icon-password"></i>
-                    <input type="password" name="repassword" required lay-verify="required|pwd" placeholder="请再次确认密码" autocomplete="off"
+                    <input type="password" name="repassword" required lay-verify="required|pwd|repwd" placeholder="请再次确认密码" autocomplete="off"
                         class="layui-input">
                 </div>
                 <div class="layui-form-item">
