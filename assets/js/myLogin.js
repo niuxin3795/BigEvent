@@ -7,7 +7,7 @@ $(function () {
         $(".box-login").show();
         $(".box-reg").hide();
     });
-    
+
     var form = layui.form;
     var layer = layui.layer;
     form.verify({
@@ -15,14 +15,14 @@ $(function () {
             /^[\S]{6,12}$/
             , '密码必须6到12位，且不能出现空格'
         ],
-    
-        repwd: function(value) {
+
+        repwd: function (value) {
             var pwd = $("#form-reg [name=password]").val();
             if (pwd !== value) {
                 return "两次密码不一致!";
             };
         }
-    
+
     });
 
     // 注册提交事件
@@ -32,7 +32,7 @@ $(function () {
             username: $("#form-reg [name=username]").val(),
             password: $("#form-reg [name=password]").val()
         };
-        $.post("http://ajax.frontend.itheima.net/api/reguser", data,
+        $.post("/api/reguser", data,
             function (res) {
                 if (res.status !== 0) {
                     return layer.msg(res.message);
@@ -41,7 +41,7 @@ $(function () {
                 $("#link_reg").click();
             }
         );
-    }); 
+    });
 
     // 登录事件
     $("#form-login").on("submit", function (e) {
@@ -50,13 +50,16 @@ $(function () {
             username: $("#form-login [name=username]").val(),
             password: $("#form-login [name=password]").val()
         };
-        $.post("http://ajax.frontend.itheima.net/api/login", data,
+        $.post("/api/login", data,
             function (res) {
                 if (res.status !== 0) {
-                     
-                }
+                    return layer.msg("登录失败");
+                };
+                layer.msg("登录成功");
+                localStorage.setItem("token", res.token);
+                location.href = "/myIndex.html";
             },
-            
+
         );
     });
 })
